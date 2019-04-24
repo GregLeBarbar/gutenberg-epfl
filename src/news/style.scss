@@ -1,0 +1,30 @@
+
+.wp-block-greglebarbar-ingredients-list-simple {
+    
+    ul.list {
+        
+        list-style: none;
+        padding:0;
+        margin:0;
+        background-color: khaki;
+    }
+
+    ul:first-child {
+        border-top: 1px solid burlywood;
+    }
+
+    li { 
+        padding: 0;
+        margin: 0;
+        border-bottom: 1px solid burlywood;
+        border-right: 1px solid burlywood;
+        border-left: 1px solid burlywood;
+    }
+
+    li:before {
+        padding: 10px;
+        content: "☐";
+        color: burlywood;
+    }
+    
+}
