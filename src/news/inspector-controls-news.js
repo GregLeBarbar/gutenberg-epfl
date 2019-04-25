@@ -24,11 +24,17 @@ export default class InspectorControlsNews extends Component {
 			.then( response => response.data.results )
 			.then( channelsList => this.setState({ channelsList }) )
             .catch( err => console.log(err))
-	}
+    }
+    
+    update = (channel) => {
+        this.props.setAttributes( { channel } );
+        this.props.callbackNews( channel );
+        
+    }
 
     render() {
 
-        const { attributes, setAttributes } = this.props
+        const { attributes } = this.props
         
         let content = "";
         
@@ -50,7 +56,7 @@ export default class InspectorControlsNews extends Component {
                         label="Channel"
                         value={ attributes.channel }
                         options={ optionsList }
-                        onChange={ channel => setAttributes( { channel } ) }
+                        onChange={ this.update(attributes.channel) }
                         />
                     </PanelBody>
                 </InspectorControls>

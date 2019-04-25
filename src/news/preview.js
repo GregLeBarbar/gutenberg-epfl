@@ -12,9 +12,7 @@ export default class PreviewNews extends Component {
 
 	componentWillMount() {
 
-		const { attributes } = this.props;
-
-		const URL_NEWS = `https://actu-test.epfl.ch/api/v1/channels/${attributes.channel}/news/?format=json&limit=3`;
+		const URL_NEWS = `https://actu-test.epfl.ch/api/v1/channels/${ this.props.channel }/news/?format=json&limit=3`;
 
 		axios.get(URL_NEWS)
 			.then( response => response.data.results )
