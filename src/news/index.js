@@ -2,21 +2,10 @@ import './style.scss'
 import './editor.scss'
 
 import PreviewNews from './preview'
+import InspectorControlsNews from './inspector-controls-news'
 
 const { __ } = wp.i18n
 const { registerBlockType } = wp.blocks
-
-const {
-
-	InspectorControls,
-
-} = wp.editor
-
-const {
-	PanelBody,
-	SelectControl
-} = wp.components
-
 const { Fragment } = wp.element
 
 registerBlockType(
@@ -35,27 +24,18 @@ registerBlockType(
 				default: '1',
 			}
 		},
+		supports : {
+			customClassName: false, // Enleve le champ qui permet d'assigner une classe personnalisée
+		},
 
 		edit: props => {
-			const { className } = props
+
+			const { attributes, className, setAttributes } = props
 
 			return (
 				<Fragment>
-					<InspectorControls>
-						<PanelBody title={ __( 'Je ne sais pas' ) }>
-							<SelectControl 
-							label="Channel"
-							value={ props.attributes.channel }
-							options={ [
-									{ label: 'Mediacom', value: '1' },
-									{ label: 'ENAC', value: '6' },
-									{ label: 'STI', value: '10' },
-							] }
-							onChange={ channel => props.setAttributes( { channel } ) }
-							/>
-						</PanelBody>
-					</InspectorControls>
-					<PreviewNews { ...{ className } } />
+					<InspectorControlsNews { ...{ attributes, setAttributes } } />
+					<PreviewNews { ...{ attributes, className } } />
 				</Fragment>
 			)
 		},
