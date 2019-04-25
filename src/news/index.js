@@ -6,7 +6,7 @@ import InspectorControlsNews from './inspector-controls-news'
 
 const { __ } = wp.i18n
 const { registerBlockType } = wp.blocks
-const { Fragment } = wp.element
+
 
 registerBlockType(
 	'greglebarbar/news',
@@ -33,10 +33,7 @@ registerBlockType(
 			const { attributes, className, setAttributes } = props
 
 			return (
-				<Fragment>
-					<InspectorControlsNews { ...{ attributes, setAttributes } } />
-					<PreviewNews { ...{ attributes, className } } />
-				</Fragment>
+				<News { ...{ attributes, className, setAttributes } } />
 			)
 		},
 
