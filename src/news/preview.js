@@ -10,8 +10,7 @@ export default class PreviewNews extends Component {
 		newsList: null,
 	}
 
-	componentWillMount() {
-
+	getNews() {
 		const { attributes } = this.props;
 
 		const URL_NEWS = `https://actu-test.epfl.ch/api/v1/channels/${attributes.channel}/news/?format=json&limit=3`;
@@ -20,6 +19,15 @@ export default class PreviewNews extends Component {
 			.then( response => response.data.results )
 			.then( newsList => this.setState({ newsList }) )
 			.catch( err => console.log(err))
+	
+	}
+
+	componentDidMount() {
+		this.getNews();
+	}
+
+	componentDidUpdate() {
+		this.getNews();	
 	}
 
 	render() {
@@ -40,7 +48,7 @@ export default class PreviewNews extends Component {
 				</p>
 			)
 		} else  {
-			console.log(this.state.newsList);
+			//console.log(this.state.newsList);
 		}
 
 		return (
