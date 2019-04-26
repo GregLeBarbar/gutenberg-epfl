@@ -11,6 +11,7 @@ const {
 	PanelBody,
     SelectControl,
     RadioControl,
+    ToggleControl,
 } = wp.components
 
 export default class InspectorControlsNews extends Component {
@@ -35,9 +36,8 @@ export default class InspectorControlsNews extends Component {
         
         if (this.state.channelsList !== null) {
             
-            // console.log(this.state.channelsList);
-
             let optionsChannelsList = [];
+
             this.state.channelsList.forEach(channel => {
                 optionsChannelsList.push({ label: channel.name, value: channel.id });
             });
@@ -65,10 +65,6 @@ export default class InspectorControlsNews extends Component {
                 { value: '5', label: __('Campus Life') },
             ]
 
-            // console.log(optionsList);
-
-            console.log(attributes);
-    
             content = (
                 <InspectorControls>
                     <PanelBody title={ __( 'Configuration' ) }>
@@ -86,6 +82,11 @@ export default class InspectorControlsNews extends Component {
                             options={ optionsTemplatesList }
                             onChange={ template => setAttributes( { template } ) }
 	                    />
+                        <ToggleControl
+                            label={ __('Display the link "all news"') }
+                            checked={ attributes.displayLinkAllNews }
+                            onChange={ () => setAttributes( { displayLinkAllNews: ! attributes.displayLinkAllNews } ) }
+                        />
                         <RadioControl
                             label={ __("Select a language") }
                             help={ __("The language used to render news results") }

@@ -27,6 +27,10 @@ registerBlockType(
 				type: 'string',
 				default: '1',
 			},
+			displayLinkAllNews: {
+				type: 'boolean',
+				default: 'false',
+			},
 			lang: {
 				type: 'string',
 				default: 'en',
