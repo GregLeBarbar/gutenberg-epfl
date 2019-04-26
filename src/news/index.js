@@ -22,6 +22,18 @@ registerBlockType(
 			channel: {
 				type: 'string',
 				default: '1',
+			},
+			template: {
+				type: 'string',
+				default: '1',
+			},
+			lang: {
+				type: 'string',
+				default: 'en',
+			},
+			category: {
+				type: 'string',
+				default: '0',
 			}
 		},
 		supports : {
