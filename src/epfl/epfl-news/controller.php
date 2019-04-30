@@ -121,7 +121,6 @@ function greglebarbar_news_render( $attributes ) {
 
 
   // sanitize parameters
-  // $channel       = sanitize_text_field( $atts['channel'] );
   $channel = $attributes['channel'];
   $lang          = sanitize_text_field( $atts['lang'] );
   $template      = sanitize_text_field( $atts['template'] );
@@ -160,10 +159,5 @@ function greglebarbar_news_render( $attributes ) {
   $results = $actus->results;
   $markup = epfl_news_render($results, $template, $all_news_link);
 
-  //var_dump($markup);
-
   return $markup;
-  
-  //$markup .= '<pre>'; print_r($attributes); $markup .= '</pre>';
-  //return '<h1>' . $attributes['channel'] . '</h1>';
 }

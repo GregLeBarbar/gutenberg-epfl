@@ -1,4 +1,6 @@
 import * as axios from 'axios';
+import React from 'react';
+import Select from 'react-select';
 
 const { __ } = wp.i18n
 const { Component } = wp.element
@@ -8,10 +10,12 @@ const {
 } = wp.editor
 
 const {
-	PanelBody,
+    PanelBody,
+    PanelRow,
     SelectControl,
     RadioControl,
     ToggleControl,
+    RangeControl,
 } = wp.components
 
 export default class InspectorControlsNews extends Component {
@@ -31,6 +35,7 @@ export default class InspectorControlsNews extends Component {
     render() {
 
         const { attributes, setAttributes } = this.props
+        const handleThemesChange = ( themes ) => setAttributes( { themes: JSON.stringify( themes ) } );
         
         let content = "";
         
@@ -65,9 +70,22 @@ export default class InspectorControlsNews extends Component {
                 { value: '5', label: __('Campus Life') },
             ]
 
+            let optionsThemesList = [
+                { value: '0', label: 'No filter' },
+                { value: '1', label: 'Basic Sciences' },
+                { value: '2', label: 'Health' },
+                { value: '3', label: 'Computer Science' },
+                { value: '4', label: 'Engineering' },
+                { value: '5', label: 'Environment' },
+                { value: '6', label: 'Buildings' },
+                { value: '7', label: 'Culture' },
+                { value: '8', label: 'Economy' },
+                { value: '9', label: 'Energy' },
+            ]
+
             content = (
                 <InspectorControls>
-                    <PanelBody title={ __( 'Configuration' ) }>
+                    <PanelBody title={ __( 'Channel' ) }>
                         <SelectControl 
                             label={ __("Select your news channel") }
                             help={ __("The news come from the application actu.epfl.ch. If you don't have a news channel, please send a request to 1234@epfl.ch") }
@@ -75,6 +93,8 @@ export default class InspectorControlsNews extends Component {
                             options={ optionsChannelsList }
                             onChange={ channel => setAttributes( { channel } ) }
                         />
+                    </PanelBody>
+                    <PanelBody title={ __( 'Template' ) }>
                         <RadioControl
                             label={ __("Select a template") }
                             help={ __("Do you need more information about templates? Read this documentation") }
@@ -87,6 +107,16 @@ export default class InspectorControlsNews extends Component {
                             checked={ attributes.displayLinkAllNews }
                             onChange={ () => setAttributes( { displayLinkAllNews: ! attributes.displayLinkAllNews } ) }
                         />
+                        <RangeControl
+                            value={ attributes.nbNews }
+                            onChange={ nbNews  => setAttributes( { nbNews } ) }
+                            min={ 0 }
+                            max={ 10 }
+                            beforeIcon="arrow-down"
+                            afterIcon="arrow-up"
+                        />
+                    </PanelBody>
+                    <PanelBody title={ __( 'Language' ) }>
                         <RadioControl
                             label={ __("Select a language") }
                             help={ __("The language used to render news results") }
@@ -94,13 +124,27 @@ export default class InspectorControlsNews extends Component {
                             options={ optionsLanguagesList }
                             onChange={ lang => setAttributes( { lang } ) }
 	                    />
+                    </PanelBody>
+                    <PanelBody title={ __( 'Category' ) }>
                         <RadioControl
                             label={ __("Filter news by category") }
-                            help={ __("Do you want filter news by category? Please select a category") }
+                            help={ __("Do you want filter news by category ? Please select a category") }
                             selected={ attributes.category }
                             options={ optionsCategoriesList }
                             onChange={ category => setAttributes( { category } ) }
 	                    />
+                    </PanelBody>
+                    <PanelBody title={ __( 'Themes' ) }>
+                        <PanelRow>
+                            <Select
+                                id='epfl-news-themes'
+                                name='select-two'
+                                value={ JSON.parse( attributes.themes ) }
+                                onChange={ handleThemesChange }
+                                options={ optionsThemesList }
+                                isMulti='true'
+                            />
+                         </PanelRow>
                     </PanelBody>
                 </InspectorControls>
             )

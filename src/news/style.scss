@@ -1,30 +1,25 @@
 
-.wp-block-greglebarbar-ingredients-list-simple {
+.wp-block-greglebarbar-news {
     
-    ul.list {
-        
-        list-style: none;
-        padding:0;
-        margin:0;
-        background-color: khaki;
+    a:link { 
+        text-decoration:none !important;
+    } 
+
+    .h5 {
+        font-size: 120%;
     }
 
-    ul:first-child {
-        border-top: 1px solid burlywood;
+    .list-group-teaser-thumbnail {
+        float: left;
+        margin-right: 3%;
     }
 
-    li { 
-        padding: 0;
-        margin: 0;
-        border-bottom: 1px solid burlywood;
-        border-right: 1px solid burlywood;
-        border-left: 1px solid burlywood;
+    .img-fluid {
+        width: 180px;
     }
 
-    li:before {
-        padding: 10px;
-        content: "☐";
-        color: burlywood;
-    }
-    
+}
+
+#epfl-news-themes {
+    width: 100% !important;
 }

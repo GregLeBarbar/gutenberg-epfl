@@ -31,6 +31,10 @@ registerBlockType(
 				type: 'boolean',
 				default: 'false',
 			},
+			nbNews: {
+				type: 'integer',
+				default: 5,
+			},
 			lang: {
 				type: 'string',
 				default: 'en',
@@ -38,7 +42,11 @@ registerBlockType(
 			category: {
 				type: 'string',
 				default: '0',
-			}
+			},
+			themes: {
+				type: 'string',
+				default: null,
+			},
 		},
 		supports : {
 			customClassName: false, // Enleve le champ qui permet d'assigner une classe personnalisée
