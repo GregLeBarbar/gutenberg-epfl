@@ -66,7 +66,7 @@ function epfl_news_build_api_url($channel, $template, $nb_news, $lang, $category
     }
 
     // filter by themes
-    if ($themes !== '') {
+    if ($themes !== '' && $themes != '[]') {
         $themes = explode(',', $themes);
         foreach ($themes as $theme) {
             $url .= '&themes=' . $theme;
@@ -74,7 +74,7 @@ function epfl_news_build_api_url($channel, $template, $nb_news, $lang, $category
     }
 
     // filter by projects
-    if ($projects !== '') {
+    if ($projects != '') {
         $projects = explode(',', $projects);
         foreach ($projects as $project) {
             $url .= '&projects=' . $project;
@@ -107,34 +107,14 @@ function epfl_news_check_required_parameters($channel, $lang) {
 
 function greglebarbar_news_render( $attributes ) {
 
-  $atts = array(
-    'channel'       => '1',
-    'lang'          => 'fr',
-    'template'      => '1',
-    'nb_news'       => '',
-    'all_news_link' => '',
-    'category'      => '',
-    'themes'        => '',
-    'projects'      => '',
-  );
-
-
-
-  // sanitize parameters
-  $channel = $attributes['channel'];
-  $lang          = sanitize_text_field( $atts['lang'] );
-  $template      = sanitize_text_field( $atts['template'] );
-  $all_news_link = sanitize_text_field( $atts['all_news_link'] );
-  $nb_news       = sanitize_text_field( $atts['nb_news'] );
-  $category      = sanitize_text_field( $atts['category'] );
-  $themes        = sanitize_text_field( $atts['themes'] );
-  $projects      = sanitize_text_field( $atts['projects'] );
-
-  /*
-  var_dump($channel);
-  var_dump($lang);
-  print_r($attributes);
-  */
+  $channel       = $attributes['channel'] ?: '1';
+  $lang          = $attributes['lang'] ?: 'fr';
+  $template      = $attributes['template'] ?: '1';
+  $all_news_link = $attributes['displayLinkAllNews'] ?: FALSE;
+  $nb_news       = $attributes['nbNews'] ?: 5;
+  $category      = $attributes['category'];
+  $themes        = $attributes['themes'];
+  $projects      = $attributes['projects'];
 
   if (epfl_news_check_required_parameters($channel, $lang) == FALSE) {
       return Utils::render_user_msg("News shortcode: Please check required parameters");
@@ -156,8 +136,7 @@ function greglebarbar_news_render( $attributes ) {
       return Utils::render_user_msg("News shortcode: Please check required parameters");
   }
 
-  $results = $actus->results;
-  $markup = epfl_news_render($results, $template, $all_news_link);
+  $markup = epfl_news_render($actus->results, $template, $all_news_link);
 
   return $markup;
 }

@@ -2,7 +2,7 @@ import './style.scss'
 import './editor.scss'
 
 import PreviewNews from './preview'
-import InspectorControlsNews from './inspector-controls-news'
+import InspectorControlsNews from './inspector'
 
 const { __ } = wp.i18n
 const { registerBlockType } = wp.blocks
@@ -25,7 +25,6 @@ registerBlockType(
 			},
 			template: {
 				type: 'string',
-				default: '1',
 			},
 			displayLinkAllNews: {
 				type: 'boolean',
@@ -49,13 +48,11 @@ registerBlockType(
 			},
 		},
 		supports : {
-			customClassName: false, // Enleve le champ qui permet d'assigner une classe personnalisée
+			customClassName: false, // Removes the default field in the inspector that allows you to assign a custom class
 		},
 
 		edit: props => {
-
 			const { attributes, className, setAttributes } = props
-
 			return (
 				<Fragment>
 					<InspectorControlsNews { ...{ attributes, setAttributes } } />
@@ -65,22 +62,12 @@ registerBlockType(
 		},
 
 		save: props => {
-			// On ne sauve rien en base de données car notre block est dynamique.
-			// En effet, on va faire une demande à actu.epfl.ch pour retourner 
-			// les N dernières news du bon canal à chaque fois que l'utilisateur 
-			// va demander la page (ou plus exactement toutes les N minutes de cache)
-
-			// Le rendu sera donc fait en php car en front-end, pour la page publiée,
-			// il n'y pas de js, react, etc
-			// Pour un bloc statique, PHP va rechercher en base le html de la page et le sert.
-			// Mais dans le cas d'un bloc dynamique, PHP va devoir interroger actu.epfl.ch
-			// et construire le html.
-
-			// On va donc stocker quelquechose comme <!-- wp:greglebarbar/news /-->
-			// Mais on devra également stocker l'id des news, le canal et les autres paramètres
-			// (peut être simplement la requête à l'api REST d'actu)
-			// pour que côté PHP on puisse générer le html
-
+			// This block is a dynamic block.
+			// So we save only something like this :
+			// <!-- wp:greglebarbar/news {"channel":"111","template":"4","displayLinkAllNews":true,
+			// "nbNews":2,"lang":"fr","category":"1","themes":"[]"} 
+			// /-->
+			// The render of this block for the end user is doing in PHP.
       return null
     },
 	}

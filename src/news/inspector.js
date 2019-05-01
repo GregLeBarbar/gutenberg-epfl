@@ -143,6 +143,7 @@ export default class InspectorControlsNews extends Component {
                                 onChange={ handleThemesChange }
                                 options={ optionsThemesList }
                                 isMulti='true'
+                            
                             />
                          </PanelRow>
                     </PanelBody>

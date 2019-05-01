@@ -17,5 +17,10 @@
 .wp-block-greglebarbar-news .img-fluid {
   width: 180px; }
 
+.wp-block-greglebarbar-news .text-center {
+  margin: auto;
+  width: 30%;
+  text-decoration: underline; }
+
 #epfl-news-themes {
   width: 100% !important; }
