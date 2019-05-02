@@ -24,6 +24,23 @@
         text-decoration: underline;
     }
 
+    .list-group-teaser-content {
+        font-family: "SuisseIntl", Arial, sans-serif !important;
+        color: rgb(33, 33, 33);
+        font-size: 18px;
+    }
+    .h5 {
+        font-weight: 700;
+    }
+    .text-muted {
+        color: rgb(112, 112, 112);
+        font-weight: 400;
+    }
+
+    a.link-pretty {
+        font-family: "SuisseIntl", Arial, sans-serif !important;
+        color: rgb(33, 33, 33);
+    }
 }
 
 #epfl-news-themes {

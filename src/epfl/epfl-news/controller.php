@@ -107,14 +107,25 @@ function epfl_news_check_required_parameters($channel, $lang) {
 
 function greglebarbar_news_render( $attributes ) {
 
-  $channel       = $attributes['channel'] ?: '1';
-  $lang          = $attributes['lang'] ?: 'fr';
-  $template      = $attributes['template'] ?: '1';
-  $all_news_link = $attributes['displayLinkAllNews'] ?: FALSE;
-  $nb_news       = $attributes['nbNews'] ?: 5;
-  $category      = $attributes['category'];
-  $themes        = $attributes['themes'];
-  $projects      = $attributes['projects'];
+  $channel       = sanitize_text_field( $attributes['channel'] ) ?: '1';
+  $lang          = sanitize_text_field( $attributes['lang'] ) ?: 'fr';
+  $template      = sanitize_text_field( $attributes['template'] ) ?: '1';
+  $all_news_link = sanitize_text_field( $attributes['displayLinkAllNews'] ) ?: FALSE;
+  $nb_news       = sanitize_text_field( $attributes['nbNews'] ) ?: 5;
+  $category      = sanitize_text_field( $attributes['category'] );
+  $themes        = sanitize_text_field( $attributes['themes'] );
+  $projects      = sanitize_text_field( $attributes['projects'] );
+
+  /*
+  var_dump("Channel: " . $channel);
+  var_dump("Lang: " . $lang);
+  var_dump("Template: " . $template);
+  var_dump("All news link: " . $all_news_link);
+  var_dump("Nb news: " . $nb_news);
+  var_dump("Category: " . $category);
+  var_dump("Themes: " . $themes);
+  var_dump("Projects: " . $projects);
+  */
 
   if (epfl_news_check_required_parameters($channel, $lang) == FALSE) {
       return Utils::render_user_msg("News shortcode: Please check required parameters");

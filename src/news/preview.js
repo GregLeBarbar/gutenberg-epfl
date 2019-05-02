@@ -101,7 +101,7 @@ export default class PreviewNews extends Component {
 										<p className="h5" itemprop="name">{ news.title }</p>
 										<p>
 											<time datetime={ news.publish_date } itemprop="datePublished">{ moment(news.publish_date).format('L').split('/').join('.') } </time>
-											<span className="text-muted" itemprop="description">- { stripHtml(news.subtitle) }</span>
+											<span className="text-muted" itemprop="description">— { stripHtml(news.subtitle) }</span>
 										</p>
 									</div>
 								</div>

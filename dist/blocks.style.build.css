@@ -22,5 +22,21 @@
   width: 30%;
   text-decoration: underline; }
 
+.wp-block-greglebarbar-news .list-group-teaser-content {
+  font-family: "SuisseIntl", Arial, sans-serif !important;
+  color: #212121;
+  font-size: 18px; }
+
+.wp-block-greglebarbar-news .h5 {
+  font-weight: 700; }
+
+.wp-block-greglebarbar-news .text-muted {
+  color: #707070;
+  font-weight: 400; }
+
+.wp-block-greglebarbar-news a.link-pretty {
+  font-family: "SuisseIntl", Arial, sans-serif !important;
+  color: #212121; }
+
 #epfl-news-themes {
   width: 100% !important; }

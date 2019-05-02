@@ -5,6 +5,7 @@
         $count = 1;
         $header = false;
         $last = count($results);
+        
         $url_channel = epfl_news_get_url_channel($results);
 
         $markup = "";
@@ -87,7 +88,7 @@
             
             if ($last == $count) {
                 $markup .= '</div>';
-                if ("true" == $all_news_link) {
+                if ("1" == $all_news_link) {
                     $markup .= '<p class="text-center">';
                     $markup .= '<a class="link-pretty" href="' . $url_channel . '">';
                     $markup .= esc_html('All news', 'epfl' );

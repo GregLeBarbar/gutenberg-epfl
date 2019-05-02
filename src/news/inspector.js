@@ -85,7 +85,7 @@ export default class InspectorControlsNews extends Component {
 
             content = (
                 <InspectorControls>
-                    <PanelBody title={ __( 'Channel' ) }>
+                    <PanelBody title={ __( 'Channel', 'capitainewp-gutenberg-blocks' ) }>
                         <SelectControl 
                             label={ __("Select your news channel") }
                             help={ __("The news come from the application actu.epfl.ch. If you don't have a news channel, please send a request to 1234@epfl.ch") }
