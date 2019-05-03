@@ -59,8 +59,49 @@ export default class PreviewMemento extends Component {
 			console.log(this.state.eventsList);
 		}
 
-		const { className, attributes } = this.props
-							
+        const { className, attributes } = this.props
+        
+        return (
+            <div className={ className }>
+            <div className="list-group">
+
+                { this.state.eventsList.map( event => {
+					return (
+
+                        <a href="#" className="list-group-item list-group-item-gray list-group-teaser link-trapeze-vertical" itemscope itemtype="http://schema.org/Event">
+                            <div className="list-group-teaser-container">
+                                <div className="list-group-teaser-thumbnail">
+                                    <picture>
+                                        <img src={ event.visual_url} class="img-fluid" alt={ event.image_description } />
+                                    </picture>
+                                </div>
+                                <div className="list-group-teaser-content">
+                                    <p className="h5 card-title" itemprop="name">{ event.title }</p>
+                                    <div className="card-info mt-0">
+                                        <span className="card-info-date" itemprop="startDate" content="2018-01-10T12:00">10.01.2018</span>
+                                        <span className="event-time">13:00</span>
+                                        <span className="event-time">17:30</span>
+                                        <p>
+                                            <span itemprop="performer" itemscope itemtype="http://schema.org/performer">
+                                                Avec <b>Prof. Dr. Aditya Mueller</b>
+                                            </span>            
+                                            <span itemprop="location" itemscope itemtype="http://schema.org/Place">
+                                                <br />
+                                                Lieu : <b><span itemprop="name">ArtLab EPFL</span></b>
+                                                <br /> Catégorie : <b>Événements culturel</b><br />
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    )
+                }) }
+            </div>
+            </div>
+        )
+
+        {/* 
 		return (
 			<div className={ className }>
 				<div class="list-group">
@@ -90,6 +131,7 @@ export default class PreviewMemento extends Component {
 					
 				</div>
 			</div>
-		)
+        )
+        */}		
 	}
 }
