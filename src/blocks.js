@@ -9,4 +9,5 @@
  * Webpack is compiling as the input file.
  */
 
-import './news'
+import './epfl-news'
+import './epfl-memento'
